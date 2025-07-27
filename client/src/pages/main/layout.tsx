@@ -10,8 +10,7 @@ const Layout = () => {
   const navigation = useNavigate();
   useEffect(() => {
     authApi.isAuth().then((res) => {
-      console.log(res);
-      if (res.Authorized) {
+      if (!res.Authorized) {
         navigation("/login");
       }
     });

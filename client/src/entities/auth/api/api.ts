@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import type { LoginType } from "../schemas";
+
 class AuthApi {
   private readonly instance;
 
@@ -39,6 +41,15 @@ class AuthApi {
           message: "Ошибка запроса",
         };
       }
+    }
+  }
+
+  public async login(data: LoginType) {
+    try {
+      const res = await this.instance.post("login", data);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
   }
 }

@@ -6,7 +6,9 @@ function App() {
   return (
     <BrowserRouter basename="user-table-t1">
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<>page</>} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

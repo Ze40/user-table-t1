@@ -2,6 +2,7 @@ import { type LucideProps, User, UserPlus } from "lucide-react";
 import { NavLink } from "react-router";
 
 import { UserSidebar } from "@/entities/user/ui";
+import { Logout } from "@/feat/auth";
 import { ThemeSwitch } from "@/feat/ui";
 import { cn } from "@/lib/utils";
 import {
@@ -45,8 +46,12 @@ const AppSidebar = () => {
   const { open } = useSidebar();
   return (
     <Sidebar collapsible={"icon"} className="collapsed:w-40">
-      <SidebarHeader className="p-6 border-b h-20 justify-center">
-        <SidebarMenu></SidebarMenu>
+      <SidebarHeader className="border-b h-20 justify-center">
+        <SidebarMenu>
+          <SidebarGroup>
+            <UserSidebar />
+          </SidebarGroup>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="p-4">
@@ -75,13 +80,9 @@ const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        {open && (
-          <SidebarGroup className="p-4">
-            <ThemeSwitch />
-          </SidebarGroup>
-        )}
-        <SidebarGroup className="p-4 border-t">
-          <UserSidebar />
+        <SidebarGroup className="flex-row items-center h-20 py-4 justify-around">
+          {open && <ThemeSwitch />}
+          <Logout />
         </SidebarGroup>
       </SidebarFooter>
     </Sidebar>

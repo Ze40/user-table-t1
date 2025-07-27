@@ -7,7 +7,7 @@ const UserSidebar = () => {
   const { open } = useSidebar();
   return (
     <div className={cn("w-full flex items-center gap-3")}>
-      <div className={cn("aspect-square", { "rounded-full bg-secondary p-2": open })}>
+      <div className={cn("aspect-square rounded-full bg-secondary p-2")}>
         <User size={open ? 24 : 20} />
       </div>
       {open && (

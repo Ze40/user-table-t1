@@ -13,7 +13,7 @@ const ThemeSwitch = ({ className }: ThemeSwitchProps) => {
     <div className={className}>
       <button
         type="button"
-        className="flex gap-6 bg-secondary px-5 py-4 rounded-full relative items-center"
+        className="flex gap-6 bg-secondary px-5 py-4 rounded-full relative items-center cursor-pointer"
         onClick={toggleTheme}
       >
         <div className={cn(theme === "dark" && "opacity-50", "z-10")}>

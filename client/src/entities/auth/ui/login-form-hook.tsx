@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
@@ -15,8 +18,17 @@ const LoginFormHook = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginType>({ resolver: zodResolver(LoginSchema) });
 
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+
   const onSubmit = async (data: LoginType) => {
-    await authApi.login(data);
+    authApi.login(data).then((res) => {
+      if (res.sucsess) {
+        navigate("/");
+      } else {
+        setError(res.message);
+      }
+    });
   };
 
   return (
@@ -43,6 +55,7 @@ const LoginFormHook = () => {
           />
           {errors.password && <p className="text-destructive text-sm">{errors.password.message}</p>}
         </div>
+        {error && <p className="text-destructive text-sm text-center">{error}</p>}
         <Button type="submit">{isSubmitting && <LoadingCircle />}Войти</Button>
       </form>
     </div>

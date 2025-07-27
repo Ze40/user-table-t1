@@ -7,7 +7,7 @@ class AuthApi {
 
   public constructor() {
     this.instance = axios.create({
-      baseURL: "api/v1/auth/",
+      baseURL: "http://localhost:4000/api/v1/auth",
       headers: {
         "Content-Type": "application/json",
       },
@@ -44,12 +44,24 @@ class AuthApi {
     }
   }
 
-  public async login(data: LoginType) {
+  public async login(data: LoginType): Promise<{ sucsess: boolean; message: string }> {
     try {
-      const res = await this.instance.post("login", data);
-      console.log(res);
+      await this.instance.post("login", data);
+      return { sucsess: true, message: "Login sucsess" };
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response) {
+        return { sucsess: false, message: "Ошибка входа" };
+      } else if (axios.isAxiosError(error) && error.request) {
+        return {
+          sucsess: false,
+          message: "Ответ не получен",
+        };
+      } else {
+        return {
+          sucsess: false,
+          message: "Ошибка запроса",
+        };
+      }
     }
   }
 }

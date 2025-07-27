@@ -51,10 +51,31 @@ class AuthApi {
   public async login(data: LoginType): Promise<{ sucsess: boolean; message: string }> {
     try {
       await this.instance.post("login", data);
-      return { sucsess: true, message: "Login sucsess" };
+      return { sucsess: true, message: "Вы успешно зашли" };
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         return { sucsess: false, message: "Ошибка входа" };
+      } else if (axios.isAxiosError(error) && error.request) {
+        return {
+          sucsess: false,
+          message: "Ответ не получен",
+        };
+      } else {
+        return {
+          sucsess: false,
+          message: "Ошибка запроса",
+        };
+      }
+    }
+  }
+
+  public async logout(): Promise<{ sucsess: boolean; message: string }> {
+    try {
+      await this.instance.post("logout");
+      return { sucsess: true, message: "Вы успешно вышли" };
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return { sucsess: false, message: "Ошибка выхода" };
       } else if (axios.isAxiosError(error) && error.request) {
         return {
           sucsess: false,

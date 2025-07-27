@@ -11,17 +11,21 @@ class AuthApi {
       headers: {
         "Content-Type": "application/json",
       },
+      withCredentials: true,
     });
   }
 
   public async isAuth(): Promise<{ Authorized: boolean; message: string }> {
     try {
-      await this.instance.get("me");
+      await this.instance.get("me", {
+        headers: {},
+      });
       return {
         Authorized: true,
         message: "Сессия активна",
       };
     } catch (error) {
+      console.log(error);
       if (axios.isAxiosError(error) && error.response) {
         const status = error.response.data.statusCode;
         switch (status) {

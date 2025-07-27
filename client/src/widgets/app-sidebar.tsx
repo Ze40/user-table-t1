@@ -1,8 +1,8 @@
 import { type LucideProps, User, UserPlus } from "lucide-react";
 import { NavLink } from "react-router";
 
+import { Logout } from "@/entities/auth";
 import { UserSidebar } from "@/entities/user/ui";
-import { Logout } from "@/feat/auth";
 import { ThemeSwitch } from "@/feat/ui";
 import { cn } from "@/lib/utils";
 import {

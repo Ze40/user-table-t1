@@ -4,8 +4,7 @@ import { UserFormHook } from "@/entities/user/ui";
 
 const CreateUserPage = () => {
   const onSubmit = (data: CreateUserSchemaType) => {
-    userApi.createUser(data).then((res) => console.log(res));
-    console.log(data);
+    userApi.createUser(data);
   };
 
   return (

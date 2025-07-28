@@ -50,7 +50,6 @@ export class UsersService {
 
   updateUser(id: string, data: UserPatchDto): string | NotFoundException {
     const user = this.usersDB[id];
-
     if (!user) {
       if (!user) throw new NotFoundException();
     }

@@ -112,6 +112,30 @@ class UserApi {
       };
     }
   }
+
+  public async editUser(
+    data: EditUserSchemaType,
+    id: string
+  ): Promise<{ sucsess: boolean; message: string }> {
+    try {
+      await this.instance.patch(id, data);
+      return {
+        sucsess: true,
+        message: "Пользователь обновлен",
+      };
+    } catch (error) {
+      if (error instanceof Error) {
+        return {
+          sucsess: false,
+          message: error.message,
+        };
+      }
+      return {
+        sucsess: false,
+        message: "Ошибка создания пользователя",
+      };
+    }
+  }
 }
 
 export const userApi = new UserApi();

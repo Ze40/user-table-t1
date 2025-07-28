@@ -50,6 +50,7 @@ export class UsersController {
   @Patch(':id')
   @ApiOperation({ summary: 'Update user' })
   updateUser(@Param('id') id: string, @Body() data: UserPatchDto) {
+    console.log(data);
     return this.usersService.updateUser(id, data);
   }
 

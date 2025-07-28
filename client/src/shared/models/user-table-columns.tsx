@@ -2,10 +2,15 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 
 import type { UserSchemaType } from "@/entities/user/schemas";
+import { UserDataTableControl } from "@/entities/user/ui";
 
 import { Button } from "../ui/button";
 
 export const userTableColumns: ColumnDef<UserSchemaType>[] = [
+  {
+    id: "actions",
+    cell: ({ row }) => <UserDataTableControl row={row} />,
+  },
   {
     accessorKey: "id",
     header: "ID",

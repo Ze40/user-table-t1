@@ -6,5 +6,5 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), tailwindcss()],
-  base: "/user-table-t1/",
+  base: "/user-table-t1",
 });

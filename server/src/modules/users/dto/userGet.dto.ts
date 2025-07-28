@@ -12,9 +12,6 @@ import {
 } from 'class-validator';
 
 export class UserGetDto {
-  @ApiProperty({ description: 'User id' })
-  id: string;
-
   @IsNotEmpty()
   @MaxLength(64)
   @ApiProperty({ description: 'User name', nullable: false })

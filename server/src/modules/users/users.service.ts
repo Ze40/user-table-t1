@@ -38,13 +38,13 @@ export class UsersService {
     return { name, id };
   }
 
-  findById(id: string): UserGetDto | NotFoundException {
-    const user = this.usersDB[id];
+  findById(userId: string): UserGetDto | NotFoundException {
+    const user = this.usersDB[userId];
 
     if (!user) throw new NotFoundException();
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...response } = user;
+    const { password, id, ...response } = user;
     return response;
   }
 

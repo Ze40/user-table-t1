@@ -32,8 +32,24 @@ const UserFormHook = ({ onSubmit }: UserFormHookProps) => {
     resolver: zodResolver(UserFormSchema),
   });
 
+  const submit = (data: UserFormSchemaType) => {
+    const validDate: CreateUserSchemaType = {
+      name: data.name,
+      surName: data.surName,
+      password: data.password,
+      fullName: data.fullName,
+      email: data.email,
+      birthDate: data.birthDate,
+      telephone: data.telephone,
+      employment: data.employment,
+      userAgreement: data.userAgreement,
+    };
+
+    onSubmit(validDate);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 w-xl relative">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-3 w-xl relative">
       <div className="flex gap-5">
         <div className="flex-1/2">
           <label htmlFor="name">Имя:</label>

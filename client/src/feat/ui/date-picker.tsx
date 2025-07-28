@@ -11,19 +11,19 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 
 interface DatePickerProps {
   className?: string;
-  value?: Date;
-  onChange?: (date: Date | undefined) => void;
+  value?: string;
+  onChange?: (date: string | undefined) => void;
   ref?: Ref<typeof Button>;
 }
 
 const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(
   ({ className, value, onChange }, ref) => {
-    const [date, setDate] = useState<Date | undefined>(value);
+    const [date, setDate] = useState<Date | undefined>(value ? new Date(value) : undefined);
 
     const handleSelect = (date: Date | undefined) => {
       setDate(date);
       if (onChange) {
-        onChange(date);
+        onChange(date?.toISOString());
       }
     };
 

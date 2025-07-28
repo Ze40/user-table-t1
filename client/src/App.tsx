@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 
 import { Login } from "./pages/auth";
 import { Layout, UserTablePage } from "./pages/main";
+import CreateUserPage from "./pages/main/create-user-page";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<UserTablePage />} />
+          <Route path="user/create" element={<CreateUserPage />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

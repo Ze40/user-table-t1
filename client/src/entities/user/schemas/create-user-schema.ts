@@ -13,8 +13,8 @@ export const CreateUserSchema = z.object({
     .min(4, { message: "Пароль должен состоять минимум из 4 символов" })
     .max(16, { message: "Длина пароля не должна превышать 16 символов" }),
   fullName: z.string().min(1, { message: "Полное имя обязательно" }),
-  birthDate: z.date({ message: "Укажите дату" }).min(1900, { message: "Вам точно столько лет?" }),
-  telephone: z.string().length(10, { message: "Некоректный номер" }),
+  birthDate: z.string().min(1, { message: "Дата обязательно" }),
+  telephone: z.string().length(11, { message: "Некоректный номер" }),
   employment: z.string().min(1, { message: "Должность обязательна" }),
   userAgreement: z.boolean(),
 });

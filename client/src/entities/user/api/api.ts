@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import type { UserSchemaType } from "../schemas";
+import type { CreateUserSchemaType, UserSchemaType } from "../schemas";
 
 class UserApi {
   private readonly instance;
@@ -48,6 +48,29 @@ class UserApi {
           data: null,
         };
       }
+    }
+  }
+
+  public async createUser(
+    newUser: CreateUserSchemaType
+  ): Promise<{ sucsess: boolean; message: string }> {
+    try {
+      await this.instance.post("", newUser);
+      return {
+        sucsess: true,
+        message: "Пользователь создан",
+      };
+    } catch (error) {
+      if (error instanceof Error) {
+        return {
+          sucsess: false,
+          message: error.message,
+        };
+      }
+      return {
+        sucsess: false,
+        message: "Ошибка создания пользователя",
+      };
     }
   }
 }
